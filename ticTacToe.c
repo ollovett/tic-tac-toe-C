@@ -22,102 +22,125 @@ char computer = 'O';
 
 int main()
 {
-    char winner = ' ';
-    int mode = 0;
+    int loop = 1;
 
-    printf("Welcome to Tic Tac Toe!\n");
-    printf("\n");
-    printf("Enter 1 for Player vs. Player.\n");
-    printf("Enter 2 for Player vs Random Computer.\n");
-    scanf("%d", &mode);
-
-    if (mode == 1)
+    do
     {
-        printf("Player 1 is X and Player 2 is O.\n");
+        char winner = ' ';
+        int mode = 0;
 
-        printExBoard();
+        printf("Welcome to Tic Tac Toe!\n");
+        printf("\n");
+        printf("Enter 1 for Player vs. Player.\n");
+        printf("Enter 2 for Player vs Random Computer.\n");
+        scanf("%d", &mode);
 
-        clearBoard();
-
-        while (winner == ' ' && checkTie() != 0)
+        if (mode == 1)
         {
-            printBoard();
-            printf("Player 1's Turn (X)\n");
-            playerMove1();
-            winner = checkWinner();
-            if (winner != ' ' || checkTie() == 0)
+            printf("Player 1 is X and Player 2 is O.\n");
+
+            printExBoard();
+
+            clearBoard();
+
+            while (winner == ' ' && checkTie() != 0)
             {
-                break;
+                printBoard();
+                printf("Player 1's Turn (X)\n");
+                playerMove1();
+                winner = checkWinner();
+                if (winner != ' ' || checkTie() == 0)
+                {
+                    break;
+                }
+                printBoard();
+                printf("Player 2's Turn (O)\n");
+                playerMove2();
+                winner = checkWinner();
+                if (winner != ' ' || checkTie() == 0)
+                {
+                    break;
+                }
             }
+
             printBoard();
-            printf("Player 2's Turn (O)\n");
-            playerMove2();
-            winner = checkWinner();
-            if (winner != ' ' || checkTie() == 0)
+
+            if (winner == player1)
             {
-                break;
+                printf("Player 1 Wins!");
             }
-        }
-
-        printBoard();
-
-        if (winner == player1)
-        {
-            printf("Player 1 Wins!");
-        }
-        else if (winner == player2)
-        {
-            printf("Player 2 Wins!");
-        }
-        else
-        {
-            printf("It is a Tie!");
-        }
-    }
-
-    if (mode == 2)
-    {
-        printf("Player 1 is X and Computer is O.\n");
-
-        printExBoard();
-
-        clearBoard();
-
-        while (winner == ' ' && checkTie() != 0)
-        {
-            printBoard();
-            printf("Player 1's Turn (X)\n");
-            playerMove1();
-            winner = checkWinner();
-            if (winner != ' ' || checkTie() == 0)
+            else if (winner == player2)
             {
-                break;
+                printf("Player 2 Wins!");
             }
-            printBoard();
-            printf("Computer's Turn (O)\n");
-            computerMove();
-            winner = checkWinner();
-            if (winner != ' ' || checkTie() == 0)
+            else
+            {
+                printf("It is a Tie!");
+            }
+
+            printf("Would you like to play again? Enter 1 for Yes or 2 for No: \n");
+            scanf("%d", &loop);
+
+            if (loop == 2)
             {
                 break;
             }
         }
 
-        printBoard();
+        if (mode == 2)
+        {
+            printf("Player 1 is X and Computer is O.\n");
 
-        if (winner == player1)
-        {
-            printf("You Win!");
+            printExBoard();
+
+            clearBoard();
+
+            while (winner == ' ' && checkTie() != 0)
+            {
+                printBoard();
+                printf("Player 1's Turn (X)\n");
+                playerMove1();
+                winner = checkWinner();
+                if (winner != ' ' || checkTie() == 0)
+                {
+                    break;
+                }
+                printBoard();
+                printf("Computer's Turn (O)\n");
+                computerMove();
+                winner = checkWinner();
+                if (winner != ' ' || checkTie() == 0)
+                {
+                    break;
+                }
+            }
+
+            printBoard();
+
+            if (winner == player1)
+            {
+                printf("You Win!");
+            }
+            else if (winner == computer)
+            {
+                printf("You lose!");
+            }
+            else
+            {
+                printf("It is a Tie!");
+            }
+
+            printf("Would you like to play again? Enter 1 for Yes or 2 for No: \n");
+            scanf("%d", &loop);
+
+            if (loop == 2)
+            {
+                break;
+            }
         }
-        else if (winner == computer)
-        {
-            printf("You lose!");
-        }
-        else
-        {
-            printf("It is a Tie!");
-        }
-    }
+
+    } while (loop == 1);
+
    return 0;
 }
 
