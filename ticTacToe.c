@@ -78,7 +78,7 @@ int main()
                 printf("It is a Tie!");
             }
 
-            printf("Would you like to play again? Enter 1 for Yes or 2 for No: \n");
+            printf("\nWould you like to play again? Enter 1 for Yes or 2 for No: \n");
             scanf("%d", &loop);
 
             if (loop == 2)
@@ -130,7 +130,7 @@ int main()
                 printf("It is a Tie!");
             }
 
-            printf("Would you like to play again? Enter 1 for Yes or 2 for No: \n");
+            printf("\nWould you like to play again? Enter 1 for Yes or 2 for No: \n");
             scanf("%d", &loop);
 
             if (loop == 2)
