@@ -83,6 +83,7 @@ int main()
 
             if (loop == 2)
             {
+                printf("Thank you for playing!");
                 break;
             }
         }
@@ -135,6 +136,7 @@ int main()
 
             if (loop == 2)
             {
+                printf("Thank you for playing!");
                 break;
             }
         }
