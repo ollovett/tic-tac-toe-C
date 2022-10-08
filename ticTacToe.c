@@ -11,6 +11,7 @@ void playerMove1();
 void playerMove2();
 void computerMove();
 char checkWinner();
+void printExBoard();
 
 
 //declare variables
@@ -22,13 +23,19 @@ char computer = 'O';
 int main()
 {
     char winner = ' ';
+    int mode = 0;
 
     printf("Welcome to Tic Tac Toe!\n");
+    printf("\n");
+    printf("Enter 1 for Player vs. Player.\n");
+    printf("Enter 2 for Player vs Random Computer.\n");
+    scanf("%d", &mode);
 
-   // if pvp{
-       printf("Player 1 is X and Player 2 is O.\n");
+    if (mode == 1)
+    {
+        printf("Player 1 is X and Player 2 is O.\n");
 
-       // print board with spaces labeled 1-9 so the user knows which space is what
+        printExBoard();
 
         clearBoard();
 
@@ -66,43 +73,51 @@ int main()
         {
             printf("It is a Tie!");
         }
+    }
 
-       // check if move is valid
-       //     if not valid keep asking until valid
+    if (mode == 2)
+    {
+        printf("Player 1 is X and Computer is O.\n");
 
-       // ask player 2 for move
+        printExBoard();
 
-      //  check valid
+        clearBoard();
 
-      //  check for win
-      //      if no win, loop
-      //      if win then ask if want to play again
-      //          if yes then start over
-   // }
-   // if comp{
-   //     say that player 1 is x, comp is o
+        while (winner == ' ' && checkTie() != 0)
+        {
+            printBoard();
+            printf("Player 1's Turn (X)\n");
+            playerMove1();
+            winner = checkWinner();
+            if (winner != ' ' || checkTie() == 0)
+            {
+                break;
+            }
+            printBoard();
+            printf("Computer's Turn (O)\n");
+            computerMove();
+            winner = checkWinner();
+            if (winner != ' ' || checkTie() == 0)
+            {
+                break;
+            }
+        }
 
-   //     print board with spaces labeled 1-9 so the user knows which space is what
+        printBoard();
 
-   //     clear board
-
-    //    print game board
-
-    //    ask player 1 for move (1-9)
-
-    //    check if move is valid
-     //       if not valid keep asking until valid
-//
-     //   randomize comp move
-
-    //    check valid
-     //       if not, keep randomizing until valid
-
-    //    check for win
-     //       if no win, loop
-     //       if win then ask if want to play again
-      //          if yes then start over
-   // }
+        if (winner == player1)
+        {
+            printf("You Win!");
+        }
+        else if (winner == computer)
+        {
+            printf("You lose!");
+        }
+        else
+        {
+            printf("It is a Tie!");
+        }
+    }
    return 0;
 }
 
@@ -121,6 +136,18 @@ void printBoard()
     printf(" %c | %c | %c ", board[3], board[4], board[5]);
     printf("\n---|---|---\n");
     printf(" %c | %c | %c ", board[6], board[7], board[8]);
+    printf("\n");
+}
+
+void printExBoard()
+{
+    printf("Each space is represented by the following numbers: \n");
+    printf(" 1 | 2 | 3 ");
+    printf("\n---|---|---\n");
+    printf(" 4 | 5 | 6 ");
+    printf("\n---|---|---\n");
+    printf(" 7 | 8 | 9 ");
+    printf("\n");
     printf("\n");
 }
 
